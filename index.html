@@ -7,7 +7,42 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Welcome</h1>
-    <p>Hello World</p>
+    <header>
+        <h1>DT Hub</h1>
+        <nav aria-label="Primary">
+            <ul>
+                <li><a href="#cad">CAD Modelling</a></li>
+                <li><a href="#web">Website Coding</a></li>
+                <li><a href="#games">Game Development</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="establish" class="intro" aria-labelledby="establish-heading">
+            <h2 id="establish-heading">Welcome to the DT Hub</h2>
+            <p>Your central entry point for projects in CAD modelling, website HTML coding and game development. Choose a pathway below to explore resources, examples and project briefs.</p>
+        </section>
+
+        <section aria-label="Pathways">
+            <div class="cards">
+                <article class="card" id="cad" role="button" tabindex="0" aria-labelledby="cad-heading">
+                    <h3 id="cad-heading">CAD Modelling</h3>
+                    <p>Learn CAD tools, build 3D models and prepare files for fabrication and 3D printing.</p>
+                    <a href="projects/cad/index.html">Explore CAD</a>
+                </article>
+                <article class="card" id="web" role="button" tabindex="0" aria-labelledby="web-heading">
+                    <h3 id="web-heading">Website HTML Coding</h3>
+                    <p>Hands-on HTML, CSS and basic JavaScript projects to build accessible web pages.</p>
+                    <a href="projects/web/index.html">Explore Web</a>
+                </article>
+                <article class="card" id="games" role="button" tabindex="0" aria-labelledby="games-heading">
+                    <h3 id="games-heading">Game Development</h3>
+                    <p>Prototype games, learn game engines and apply programming concepts to interactive projects.</p>
+                    <a href="projects/games/index.html">Explore Games</a>
+                </article>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
