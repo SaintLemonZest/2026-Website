@@ -14,6 +14,7 @@
                 <li><a href="#cad">CAD Modelling</a></li>
                 <li><a href="#web">Website Coding</a></li>
                 <li><a href="#games">Game Development</a></li>
+                <li><a href="#projects-db">Projects Database</a></li>
             </ul>
         </nav>
     </header>
@@ -43,6 +44,135 @@
                 </article>
             </div>
         </section>
+
+        <section id="projects-db" aria-labelledby="projects-heading" class="database-view">
+            <h2 id="projects-heading">Projects Database</h2>
+            <p>Browse the live project data from <code>projects.json</code>. Filter by type or status, and search by title, student, teacher or description.</p>
+
+            <div class="project-controls">
+                <label for="search-projects">Search projects</label>
+                <input id="search-projects" type="search" placeholder="Search by title, student, teacher or description" />
+
+                <div class="project-filters" role="group" aria-label="Project filters">
+                    <button type="button" class="filter-btn active" data-type="all">All</button>
+                    <button type="button" class="filter-btn" data-type="engineering">Engineering</button>
+                    <button type="button" class="filter-btn" data-type="digital-technology">Digital Technology</button>
+                    <button type="button" class="filter-btn" data-type="completed">Completed</button>
+                </div>
+            </div>
+
+            <div id="projects-container" class="projects-table">
+                <p class="loading">Loading project database...</p>
+            </div>
+        </section>
     </main>
+    <script>
+        const allProjects = [];
+        const container = document.getElementById('projects-container');
+        const searchInput = document.getElementById('search-projects');
+
+        async function loadProjects() {
+            try {
+                const response = await fetch('./projects.json');
+                if (!response.ok) throw new Error(`Failed to fetch projects: ${response.statusText}`);
+                const data = await response.json();
+                allProjects.push(...data);
+                setupFilterButtons();
+                renderProjects('all');
+            } catch (error) {
+                console.error('Error loading projects:', error);
+                container.innerHTML = '<p class="error">Failed to load the project database. Try refreshing the page.</p>';
+            }
+        }
+
+        function normalizeText(value) {
+            return String(value || '').toLowerCase();
+        }
+
+        function matchesSearch(project, query) {
+            if (!query) return true;
+            const text = [
+                project.title,
+                project.student_name,
+                project.teacher_name,
+                project.project_type,
+                project.description,
+                project.materials_or_tech,
+                project.outcome,
+                project.year
+            ].join(' ');
+            return normalizeText(text).includes(query);
+        }
+
+        function renderProjects(filterType, searchQuery = '') {
+            const query = normalizeText(searchQuery);
+            const filtered = allProjects.filter(project => {
+                const matchesFilter = filterType === 'all'
+                    || project.project_type === filterType
+                    || project.status === filterType;
+                return matchesFilter && matchesSearch(project, query);
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<p class="no-results">No projects match your search or filter. Try another term.</p>';
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="table-wrap">
+                    <table class="project-table" aria-label="Projects database table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Project</th>
+                                <th>Student</th>
+                                <th>Year</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${filtered.map(project => `
+                                <tr>
+                                    <td>${project.id}</td>
+                                    <td>${project.title}</td>
+                                    <td>${project.student_name}</td>
+                                    <td>${project.year}</td>
+                                    <td>${project.project_type.replace('-', ' ')}</td>
+                                    <td><span class="status-badge ${project.status}">${project.status}</span></td>
+                                    <td class="details-cell">
+                                        <details>
+                                            <summary>View</summary>
+                                            <p><strong>Description:</strong> ${project.description}</p>
+                                            <p><strong>Materials/Tech:</strong> ${project.materials_or_tech}</p>
+                                            <p><strong>Outcome:</strong> ${project.outcome}</p>
+                                        </details>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        function setupFilterButtons() {
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    renderProjects(button.dataset.type, searchInput.value);
+                });
+            });
+
+            searchInput.addEventListener('input', () => {
+                const activeButton = document.querySelector('.filter-btn.active');
+                renderProjects(activeButton?.dataset.type || 'all', searchInput.value);
+            });
+        }
+
+        loadProjects();
+    </script>
 </body>
 </html>

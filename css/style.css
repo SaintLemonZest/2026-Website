@@ -89,3 +89,125 @@ img, video { max-width: 100%; height: auto; display: block; }
 /* Utility classes */
 .text-center { text-align: center; }
 .muted { color: #6b7280; }
+
+.project-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.project-controls label {
+    font-weight: 700;
+    color: #111827;
+}
+
+.project-controls input {
+    flex: 1;
+    min-width: 240px;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.project-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.filter-btn {
+    border: 1px solid #0b5cff;
+    background: #fff;
+    color: #0b5cff;
+    padding: 0.55rem 0.95rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: #0b5cff;
+    color: #fff;
+}
+
+.table-wrap {
+    overflow-x: auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(16, 24, 40, 0.08);
+}
+
+.project-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
+}
+
+.project-table th,
+.project-table td {
+    padding: 0.9rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: top;
+}
+
+.project-table th {
+    background: #f3f4f6;
+    color: #111827;
+    font-weight: 700;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    text-transform: capitalize;
+}
+
+.status-badge.completed {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.status-badge.pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.details-cell details {
+    font-size: 0.95rem;
+}
+
+.details-cell summary {
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none;
+}
+
+.details-cell summary::-webkit-details-marker {
+    display: none;
+}
+
+.loading,
+.no-results,
+.error {
+    padding: 1rem;
+    border-radius: 10px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+}
+
+.error {
+    color: #b91c1c;
+    border-color: #fca5a5;
+}
+
+.no-results {
+    color: #374151;
+}
