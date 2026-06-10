@@ -29,17 +29,17 @@
     "created_at": "2026-06-09T23:47:56.343Z",
     "updated_at": "2026-06-09T23:47:56.343Z"
   },
-  {
+    {
     "id": 3,
-    "title": "Desk Lamp",
-    "student_name": "Constantine Hunt",
+    "title": "MyTravel",
+    "student_name": "Jheizel Susbilla",
     "year": "2026",
-    "project_type": "CAD-Modelling",
-    "description": "The project that I am working on is a desk lamp for my older bother (a uni student), the aim of the project is to create a functioning lamp that is cheaper than market ones but has the same if not more functionality and aesthetics.",
-    "materials_or_tech": "Fusion 360, and then the workshop for manufacturing.",
+    "project_type": "Game-Development",
+    "description": "MyTravel is a 3D educational driving simulator aimed at teaching international drivers NZ road environment/rules in low-stakes immersive experience. It is specifically designed for international drivers, however assessment wise, it is aimed at end-users who want to practice driving in NZ under a low-stakes environment\n\nThe problem it attempts to solve is the lack of preparation that international drivers can have. As a result of the lack of resources where they can learn, it causes dangerous scenarios.",
+    "materials_or_tech": "Godot & Github Desktop",
     "outcome": "",
     "status": "in-progress",
-    "image_url": "https://drive.google.com/open?id=15hUpZaOIToRP0JeVwRJXTLKv_emzEkSB",
+    "image_url": "https://drive.google.com/open?id=1oYISS9H2JQ2bkQnVRw0dXK704-TgAqEB, https://drive.google.com/open?id=1FAIVEGbNPjsb43IX1ZSrMGutVVFUf4SR",
     "teacher_name": "Mr. Sutherland",
     "created_at": "2026-06-09T23:47:56.343Z",
     "updated_at": "2026-06-09T23:47:56.343Z"
@@ -74,8 +74,38 @@
     "created_at": "2026-06-09T23:47:56.343Z",
     "updated_at": "2026-06-09T23:47:56.343Z"
   },
-  {
+    {
     "id": 6,
+    "title": "Desk Lamp",
+    "student_name": "Constantine Hunt",
+    "year": "2026",
+    "project_type": "CAD-Modelling",
+    "description": "The project that I am working on is a desk lamp for my older bother (a uni student), the aim of the project is to create a functioning lamp that is cheaper than market ones but has the same if not more functionality and aesthetics.",
+    "materials_or_tech": "Fusion 360, and then the workshop for manufacturing.",
+    "outcome": "",
+    "status": "in-progress",
+    "image_url": "https://drive.google.com/open?id=15hUpZaOIToRP0JeVwRJXTLKv_emzEkSB",
+    "teacher_name": "Mr. Sutherland",
+    "created_at": "2026-06-09T23:47:56.343Z",
+    "updated_at": "2026-06-09T23:47:56.343Z"
+  },
+    {
+    "id": 7,
+    "title": "Desk Lamp 2.0",
+    "student_name": "William Gamblin",
+    "year": "2026",
+    "project_type": "CAD-Modelling",
+    "description": "To design an outcome suitable for the end user, The end user in question being my brother, I am attempting to solve his problem of having no light pointing to his desk to do that I'm making a custom lamp.",
+    "materials_or_tech": "Fusion 360, and then the workshop for manufacturing.",
+    "outcome": "",
+    "status": "in-progress",
+    "image_url": null,
+    "teacher_name": "Mr. Sutherland",
+    "created_at": "2026-06-09T23:47:56.343Z",
+    "updated_at": "2026-06-09T23:47:56.343Z"
+  },
+  {
+    "id": 8,
     "title": "Toyota Website",
     "student_name": "Darsheel Krishna",
     "year": "2026",
@@ -89,23 +119,8 @@
     "created_at": "2026-06-09T23:47:56.343Z",
     "updated_at": "2026-06-09T23:47:56.343Z"
   },
-  {
-    "id": 7,
-    "title": "MyTravel",
-    "student_name": "Jheizel Susbilla",
-    "year": "2026",
-    "project_type": "Game-Development",
-    "description": "MyTravel is a 3D educational driving simulator aimed at teaching international drivers NZ road environment/rules in low-stakes immersive experience. It is specifically designed for international drivers, however assessment wise, it is aimed at end-users who want to practice driving in NZ under a low-stakes environment\n\nThe problem it attempts to solve is the lack of preparation that international drivers can have. As a result of the lack of resources where they can learn, it causes dangerous scenarios.",
-    "materials_or_tech": "Godot & Github Desktop",
-    "outcome": "",
-    "status": "in-progress",
-    "image_url": "https://drive.google.com/open?id=1oYISS9H2JQ2bkQnVRw0dXK704-TgAqEB, https://drive.google.com/open?id=1FAIVEGbNPjsb43IX1ZSrMGutVVFUf4SR",
-    "teacher_name": "Mr. Sutherland",
-    "created_at": "2026-06-09T23:47:56.343Z",
-    "updated_at": "2026-06-09T23:47:56.343Z"
-  },
-  {
-    "id": 8,
+ {
+    "id": 9,
     "title": "Beat Em Up",
     "student_name": "Alyssa Mediano",
     "year": "2026",
@@ -118,20 +133,6 @@
     "teacher_name": "Mr. Sutherland",
     "created_at": "2026-06-09T23:47:56.343Z",
     "updated_at": "2026-06-09T23:47:56.343Z"
-  },
-  {
-    "id": 9,
-    "title": "Desk Lamp 2.0",
-    "student_name": "William Gamblin",
-    "year": "2026",
-    "project_type": "CAD-Modelling",
-    "description": "To design an outcome suitable for the end user, The end user in question being my brother, I am attempting to solve his problem of having no light pointing to his desk to do that I'm making a custom lamp.",
-    "materials_or_tech": "Fusion 360, and then the workshop for manufacturing.",
-    "outcome": "",
-    "status": "in-progress",
-    "image_url": null,
-    "teacher_name": "Mr. Sutherland",
-    "created_at": "2026-06-09T23:47:56.343Z",
-    "updated_at": "2026-06-09T23:47:56.343Z"
   }
+
 ]
