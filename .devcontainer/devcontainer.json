@@ -1,6 +1,5 @@
 {
   "name": "MariaDB Development Environment",
-  "image": "://microsoft.com",
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:1": {}
   },
