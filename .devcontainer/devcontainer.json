@@ -1,7 +1,7 @@
 {
   "name": "MariaDB Development Environment",
   "onCreateCommand": "sudo apt-get update && sudo apt-get install -y mariadb-server mariadb-client",
-  "postStartCommand": "sudo service mariadb start && mysql -e \"CREATE DATABASE IF NOT EXISTS dev_db; CREATE USER IF NOT EXISTS 'developer'@'localhost' IDENTIFIED BY 'root'; GRANT ALL PRIVILEGES ON *.* TO 'developer'@'localhost'; FLUSH PRIVILEGES;\"",
+  "postStartCommand": "sudo service mariadb start && mysql -e \"CREATE DATABASE IF NOT EXISTS dev_db; CREATE USER IF NOT EXISTS 'root'@'localhost' IDENTIFIED BY 'password'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost'; FLUSH PRIVILEGES;\"",
   "forwardPorts": [3306],
   "customizations": {
     "vscode": {
