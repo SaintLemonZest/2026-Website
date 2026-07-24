@@ -4,17 +4,6 @@
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {}
   },
-  "services": {
-    "mariadb": {
-      "image": "mariadb:latest",
-      "environment": {
-        "MARIADB_ROOT_PASSWORD": "root",
-        "MARIADB_DATABASE": "projects"
-      },
-      "ports": ["3306:3306"],
-      "volumes": ["/workspaces/mariadb-data:/var/lib/mysql"]
-    }
-  },
   "forwardPorts": [3306],
   "postCreateCommand": "apt-get update && apt-get install -y mariadb-client && sleep 30 && mariadb -h mariadb -u root -proot -e \"CREATE DATABASE IF NOT EXISTS projects CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; GRANT ALL PRIVILEGES ON projects.* TO 'root'@'%' IDENTIFIED BY 'root'; FLUSH PRIVILEGES;\"",
   "customizations": {
