@@ -1,8 +1,22 @@
 {
-  "name": "MariaDB Development Environment",
-  "onCreateCommand": "sudo apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server mariadb-client",
-  "postStartCommand": "sudo service mariadb start || sudo service mariadb restart; sudo mariadb -uroot -e \"CREATE DATABASE IF NOT EXISTS dev_db; CREATE USER IF NOT EXISTS 'dev'@'localhost' IDENTIFIED BY 'password'; GRANT ALL PRIVILEGES ON dev_db.* TO 'dev'@'localhost'; FLUSH PRIVILEGES;\" 2>/dev/null || true",
+  "name": "2026-Website",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "services": {
+    "mariadb": {
+      "image": "mariadb:latest",
+      "environment": {
+        "MARIADB_ROOT_PASSWORD": "root",
+        "MARIADB_DATABASE": "projects"
+      },
+      "ports": ["3306:3306"],
+      "volumes": ["/workspaces/mariadb-data:/var/lib/mysql"]
+    }
+  },
   "forwardPorts": [3306],
+  "postCreateCommand": "apt-get update && apt-get install -y mariadb-client && sleep 30 && mariadb -h mariadb -u root -proot -e \"CREATE DATABASE IF NOT EXISTS projects CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; GRANT ALL PRIVILEGES ON projects.* TO 'root'@'%' IDENTIFIED BY 'root'; FLUSH PRIVILEGES;\"",
   "customizations": {
     "vscode": {
       "extensions": [
