@@ -1,16 +1,12 @@
 {
-  "name": "2026-Website",
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "name": "My MariaDB Codespace",
+  "image": "mcr.microsoft.com/devcontainers/base:latest",
   "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+    "ghcr.io/devcontainers/features/sshd:1": {},
+    "ghcr.io/custom-devcontainers/features/mariadb:1": {
+      "version": "latest"
+    }
   },
   "forwardPorts": [3306],
-  "postCreateCommand": "apt-get update && apt-get install -y mariadb-client && sleep 30 && mariadb -h mariadb -u root -proot -e \"CREATE DATABASE IF NOT EXISTS projects CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; GRANT ALL PRIVILEGES ON projects.* TO 'root'@'%' IDENTIFIED BY 'root'; FLUSH PRIVILEGES;\"",
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "cweijan.vscode-mysql-client2"
-      ]
-    }
-  }
+  "postCreateCommand": "sudo service mariadb start"
 }
