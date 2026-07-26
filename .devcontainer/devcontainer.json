@@ -3,10 +3,9 @@
   "image": "mcr.microsoft.com/devcontainers/base:latest",
   "features": {
     "ghcr.io/devcontainers/features/sshd:1": {},
-    "ghcr.io/custom-devcontainers/features/mariadb:1": {
-      "version": "latest"
-    }
+    "ghcr.io/devcontainers/features/mariadb:1": {}
   },
+  "version": "latest",
   "forwardPorts": [3306],
   "postCreateCommand": "sudo service mariadb start"
 }
