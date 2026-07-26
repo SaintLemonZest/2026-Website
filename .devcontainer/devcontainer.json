@@ -1,10 +1,6 @@
 {
   "name": "My MariaDB Codespace",
   "image": "mcr.microsoft.com/devcontainers/base:latest",
-  "features": {
-    "ghcr.io/devcontainers/features/sshd:1": {},
-    "ghcr.io/devcontainers/features/mariadb:1": {}
-  },
   "forwardPorts": [3306],
   "postCreateCommand": "sudo apt-get update && sudo apt-get install -y mariadb-server && sudo service mariadb start"
 }
