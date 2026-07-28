@@ -1,0 +1,15 @@
+{
+  "name": "My MariaDB Codespace",
+  "image": "mcr.microsoft.com/devcontainers/base:latest",
+  "forwardPorts": [3306],
+  "postCreateCommand": "sudo apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server && sudo service mariadb start && sudo mariadb -e \"ALTER USER 'root'@'localhost' IDENTIFIED BY 'password'; CREATE DATABASE IF NOT EXISTS projects; FLUSH PRIVILEGES;\"",
+  "customizations": {
+    "codespaces": {
+      "repositories": {
+        "*": {
+          "permissions": "write-all"
+        }
+      }
+    }
+  }
+}
