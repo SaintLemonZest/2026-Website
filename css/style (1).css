@@ -1,0 +1,381 @@
+/* ==========================================================================
+   Merged stylesheet
+   - Color palette / branded appearance: from style2 (maroon/aqua/orange)
+   - Functional / "reactive" components (grid, table, filters, status,
+     loading/error states): from style1, recolored to match the palette
+   - nav / header / footer: unified so class-based and element-based rules
+     no longer double up on the same markup
+   ========================================================================== */
+
+:root {
+	--maroon: #8B1E4B;
+	--dark-blue: #332D7A;
+	--aqua: #30D9DB;
+	--white: #FFFFFF;
+	--orange: #F6A01A;
+	--black: #000000;
+	--muted: #6b7280;
+}
+
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+
+body {
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	line-height: 1.5;
+	color: var(--black);
+	background: var(--white);
+}
+
+img, video { max-width: 100%; height: auto; display: block; margin: auto; }
+
+/* ==========================================================================
+   Layout container (functional wrapper for grid/card content)
+   ========================================================================== */
+.container {
+	width: 100%;
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 1rem;
+}
+
+/* Slideshow images specifically fill their container width */
+.slideshow-container img,
+.container > img {
+	width: 100%;
+}
+
+/* ==========================================================================
+   Header — unified banner + optional flex sub-header, maroon appearance
+   ========================================================================== */
+header,
+.site-header {
+	background-color: var(--maroon);
+	color: var(--white);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 1rem;
+	padding: 1rem;
+	text-align: center;
+}
+
+h1 { padding-left: 3%; }
+
+.brand { font-weight: 700; font-size: 1.25rem; color: var(--white); }
+
+.header { padding-left: 10%; }
+
+.logo {
+	width: 5%;
+	height: auto;
+	float: left;
+	margin-right: 2%;
+	margin-bottom: 2%;
+}
+
+.clearfix { overflow: auto; }
+
+/* ==========================================================================
+   Navigation — unified element + class selectors, aqua/orange appearance
+   ========================================================================== */
+nav,
+.nav {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	background-color: var(--aqua);
+	border-left: 6px solid var(--orange);
+	padding: 0.5rem;
+}
+
+nav a,
+.nav a {
+	color: var(--dark-blue);
+	text-decoration: none;
+	font-weight: bold;
+	padding: 0.5rem 0.6rem;
+	border-radius: 6px;
+}
+
+nav a:hover,
+.nav a:hover {
+	color: var(--orange);
+	background: rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+   Main content / grid / cards (functional, recolored)
+   ========================================================================== */
+main {
+	padding: 2rem;
+	background-color: var(--white);
+}
+
+section {
+	background-color: var(--aqua);
+	margin-bottom: 1rem;
+	padding: 1rem;
+	border-left: 6px solid var(--orange);
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: 1fr 320px;
+	gap: 1rem;
+	align-items: start;
+	margin-top: 1rem;
+}
+
+.card {
+	background: var(--white);
+	border-radius: 8px;
+	padding: 1rem;
+	box-shadow: 0 1px 3px rgba(16, 24, 40, 0.06);
+}
+
+/* ==========================================================================
+   Buttons / links
+   ========================================================================== */
+
+/* Primary functional button (was blue in style1, now maroon) */
+.btn {
+	display: inline-block;
+	background: var(--maroon);
+	color: var(--white);
+	padding: 0.5rem 0.9rem;
+	border-radius: 6px;
+	text-decoration: none;
+}
+
+.btn:hover { background: var(--dark-blue); }
+
+/* Scoped version of style2's old global a:link button —
+   apply this class to specific links instead of styling every <a> */
+.link-btn {
+	background-color: var(--maroon);
+	color: var(--white);
+	padding: 14px 25px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+}
+
+.link-btn:hover { background-color: var(--dark-blue); }
+
+/* ==========================================================================
+   Project controls / filters / table (functional, recolored)
+   ========================================================================== */
+.project-controls {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	align-items: center;
+	margin-bottom: 1rem;
+}
+
+.project-controls label {
+	font-weight: 700;
+	color: var(--dark-blue);
+}
+
+.project-controls input {
+	flex: 1;
+	min-width: 240px;
+	padding: 0.65rem 0.9rem;
+	border: 1px solid #d1d5db;
+	border-radius: 10px;
+	background: var(--white);
+}
+
+.project-filters {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.filter-btn {
+	border: 1px solid var(--maroon);
+	background: var(--white);
+	color: var(--maroon);
+	padding: 0.55rem 0.95rem;
+	border-radius: 999px;
+	cursor: pointer;
+	transition: background 0.2s ease, color 0.2s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+	background: var(--maroon);
+	color: var(--white);
+}
+
+.table-wrap {
+	overflow-x: auto;
+	background: var(--white);
+	border-radius: 12px;
+	box-shadow: 0 1px 3px rgba(16, 24, 40, 0.08);
+}
+
+.project-table {
+	width: 100%;
+	border-collapse: collapse;
+	min-width: 900px;
+}
+
+.project-table th,
+.project-table td {
+	padding: 0.9rem 1rem;
+	text-align: left;
+	border-bottom: 1px solid #e5e7eb;
+	vertical-align: top;
+}
+
+.project-table th {
+	background: #f3f4f6;
+	color: var(--dark-blue);
+	font-weight: 700;
+	border-bottom: 2px solid var(--orange);
+}
+
+/* Status badges keep their semantic (success/pending) colors rather than
+   the brand palette, since green/amber carry meaning here */
+.status-badge {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.25rem 0.7rem;
+	border-radius: 999px;
+	font-size: 0.85rem;
+	text-transform: capitalize;
+}
+
+.status-badge.completed { background: #d1fae5; color: #065f46; }
+.status-badge.pending { background: #fef3c7; color: #92400e; }
+
+.details-cell details { font-size: 0.95rem; }
+
+.details-cell summary {
+	cursor: pointer;
+	font-weight: 600;
+	list-style: none;
+}
+
+.details-cell summary::-webkit-details-marker { display: none; }
+
+.loading,
+.no-results,
+.error {
+	padding: 1rem;
+	border-radius: 10px;
+	background: var(--white);
+	border: 1px solid #d1d5db;
+}
+
+.error { color: #b91c1c; border-color: #fca5a5; }
+.no-results { color: var(--muted); }
+
+/* ==========================================================================
+   Slideshow (appearance feature, unchanged from style2)
+   ========================================================================== */
+.slideshow-container {
+	max-width: 1000px;
+	position: relative;
+	margin: auto;
+}
+
+.mySlides { display: none; }
+
+.prev, .next {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: auto;
+	margin-top: -22px;
+	padding: 16px;
+	color: var(--white);
+	font-weight: bold;
+	font-size: 18px;
+	transition: 0.6s ease;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
+}
+
+.next { right: 0; border-radius: 3px 0 0 3px; }
+
+.prev:hover, .next:hover { background-color: rgba(0, 0, 0, 0.8); }
+
+.text {
+	color: var(--orange);
+	font-size: 15px;
+	padding: 8px 12px;
+	position: absolute;
+	bottom: 8px;
+	width: 100%;
+	text-align: center;
+}
+
+.numbertext {
+	color: var(--black);
+	font-size: 12px;
+	padding: 8px 12px;
+	position: absolute;
+	top: 0;
+}
+
+.dot {
+	cursor: pointer;
+	height: 15px;
+	width: 15px;
+	margin: 0 2px;
+	background-color: var(--maroon);
+	border-radius: 50%;
+	display: inline-block;
+	transition: background-color 0.6s ease;
+}
+
+.fade { animation-name: fade; animation-duration: 1.6s; }
+
+@keyframes fade {
+	from { opacity: .4; }
+	to { opacity: 1; }
+}
+
+/* ==========================================================================
+   Footer — unified element + class selectors, dark-blue appearance
+   ========================================================================== */
+footer,
+.site-footer {
+	background-color: var(--dark-blue);
+	color: var(--white);
+	text-align: center;
+	padding: 1rem;
+	margin-top: 2rem;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   Utility classes
+   ========================================================================== */
+.text-center { text-align: center; }
+.muted { color: var(--muted); }
+
+/* ==========================================================================
+   Responsive adjustments
+   ========================================================================== */
+@media (max-width: 900px) {
+	.grid { grid-template-columns: 1fr; }
+	header, .site-header { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 480px) {
+	.container { padding: 0.5rem; }
+	.brand { font-size: 1rem; }
+	nav, .nav { gap: 0.5rem; }
+}
