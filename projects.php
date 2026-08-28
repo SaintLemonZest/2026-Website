@@ -25,17 +25,22 @@ if (!$result) {
 
 $projects = [];
 while ($row = $result->fetch_assoc()) {
+    $createdAt = $row['project_created'];
     $projects[] = [
         'id' => (int)$row['id'],
         'submitted_at' => $row['submitted_at'],
         'student_name' => $row['student_name'],
+        'teacher_name' => null,
         'email' => $row['email'],
         'title' => $row['project_title'],
+        'year' => $createdAt ? date('Y', strtotime($createdAt)) : null,
         'project_type' => $row['project_type'],
         'status' => $row['project_status'],
         'description' => $row['description'],
+        'materials_or_tech' => $row['technologies'],
+        'outcome' => null,
         'technologies' => $row['technologies'],
-        'created_at' => $row['project_created'],
+        'created_at' => $createdAt,
         'images' => $row['images'],
         'form_feedback' => $row['form_feedback'],
     ];
