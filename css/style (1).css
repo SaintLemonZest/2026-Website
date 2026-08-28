@@ -265,6 +265,13 @@ section {
 
 .details-cell summary::-webkit-details-marker { display: none; }
 
+.outcome-image {
+	max-width: 240px;
+	max-height: 180px;
+	margin: 0.5rem 0 0;
+	object-fit: contain;
+}
+
 .loading,
 .no-results,
 .error {
