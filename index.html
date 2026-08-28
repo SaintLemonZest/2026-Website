@@ -83,7 +83,21 @@
         }
 
         function displayProjectType(value) {
-            return String(value || '').trim();
+            return displayValue(value);
+        }
+
+        function displayValue(value) {
+            const text = String(value ?? '').trim();
+            return text || 'Not provided';
+        }
+
+        function escapeHtml(value) {
+            return displayValue(value)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
         }
 
         async function loadProjects() {
@@ -153,18 +167,18 @@
                         <tbody>
                             ${filtered.map(project => `
                                 <tr>
-                                    <td>${project.id}</td>
-                                    <td>${project.title}</td>
-                                    <td>${project.student_name}</td>
-                                    <td>${project.year}</td>
-                                    <td>${displayProjectType(project.project_type)}</td>
-                                    <td><span class="status-badge ${project.status}">${project.status}</span></td>
+                                    <td>${escapeHtml(project.id)}</td>
+                                    <td>${escapeHtml(project.title)}</td>
+                                    <td>${escapeHtml(project.student_name)}</td>
+                                    <td>${escapeHtml(project.year)}</td>
+                                    <td>${escapeHtml(project.project_type)}</td>
+                                    <td><span class="status-badge ${escapeHtml(normalizeText(project.status))}">${escapeHtml(project.status)}</span></td>
                                     <td class="details-cell">
                                         <details>
                                             <summary>View</summary>
-                                            <p><strong>Description:</strong> ${project.description}</p>
-                                            <p><strong>Materials/Tech:</strong> ${project.materials_or_tech}</p>
-                                            <p><strong>Outcome:</strong> ${project.outcome}</p>
+                                            <p><strong>Description:</strong> ${escapeHtml(project.description)}</p>
+                                            <p><strong>Materials/Tech:</strong> ${escapeHtml(project.materials_or_tech ?? project.technologies)}</p>
+                                            <p><strong>Outcome:</strong> ${escapeHtml(project.outcome)}</p>
                                         </details>
                                     </td>
                                 </tr>
