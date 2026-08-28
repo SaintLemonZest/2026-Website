@@ -100,6 +100,41 @@
                 .replace(/'/g, '&#039;');
         }
 
+        function getImageUrl(project) {
+            const images = project.images ?? project.image_url;
+            if (!images) return '';
+
+            let imageUrl = images;
+            if (Array.isArray(images)) {
+                imageUrl = images[0];
+            } else {
+                try {
+                    const parsedImages = JSON.parse(images);
+                    if (Array.isArray(parsedImages)) imageUrl = parsedImages[0];
+                } catch {
+                    imageUrl = String(images).split(',')[0].trim();
+                }
+            }
+
+            imageUrl = String(imageUrl || '').trim();
+            if (!imageUrl) return '';
+            const driveId = imageUrl.match(/[?&]id=([^&]+)/)?.[1];
+            return driveId
+                ? `https://drive.google.com/uc?export=view&id=${encodeURIComponent(driveId)}`
+                : /^https?:\/\//i.test(imageUrl)
+                    ? imageUrl
+                    : `uploads/${encodeURIComponent(imageUrl)}`;
+        }
+
+        function renderOutcome(project) {
+            const imageUrl = getImageUrl(project);
+            if (!imageUrl) return '<p><strong>Outcome:</strong> Not provided</p>';
+
+            return `<p><strong>Outcome:</strong></p>
+                <img class="outcome-image" src="${escapeHtml(imageUrl)}" alt="Attached image for ${escapeHtml(project.title)}" loading="lazy" onerror="this.hidden=true; this.nextElementSibling.hidden=false">
+                <span class="image-unavailable" hidden>Image unavailable</span>`;
+        }
+
         async function loadProjects() {
             try {
                 const response = await fetch('./projects.php');
@@ -178,7 +213,7 @@
                                             <summary>View</summary>
                                             <p><strong>Description:</strong> ${escapeHtml(project.description)}</p>
                                             <p><strong>Materials/Tech:</strong> ${escapeHtml(project.materials_or_tech ?? project.technologies)}</p>
-                                            <p><strong>Outcome:</strong> ${escapeHtml(project.outcome)}</p>
+                                            ${renderOutcome(project)}
                                         </details>
                                     </td>
                                 </tr>
