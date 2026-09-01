@@ -1,8 +1,9 @@
 {
   "name": "My MariaDB Codespace",
   "image": "mcr.microsoft.com/devcontainers/base:latest",
-  "forwardPorts": [3306],
+  "forwardPorts": [3306, 8000],
   "postCreateCommand": "sudo apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server && sudo service mariadb start && sudo mariadb -e \"ALTER USER 'root'@'localhost' IDENTIFIED BY 'password'; CREATE DATABASE IF NOT EXISTS projects; FLUSH PRIVILEGES;\"",
+  "postStartCommand": "bash -lc 'sudo service mariadb start && cd /workspaces/2026-Website && nohup php -S 0.0.0.0:8000 projects.php >/tmp/dthub-php.log 2>&1 &'",
   "customizations": {
     "codespaces": {
       "repositories": {
