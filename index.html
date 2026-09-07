@@ -119,7 +119,7 @@
             imageUrl = String(imageUrl || '').trim();
             if (!imageUrl) return '';
             const driveId = imageUrl.match(/(?:\/file\/d\/|[?&]id=)([a-zA-Z0-9_-]+)/)?.[1];
-            if (driveId) return `https://drive.google.com/uc?export=view&id=${encodeURIComponent(driveId)}`;
+            if (driveId) return `https://drive.google.com/thumbnail?id=${encodeURIComponent(driveId)}&sz=w1200`;
             if (/^(data:image\/|blob:|https?:\/\/)/i.test(imageUrl)) return imageUrl;
 
             const imagePath = imageUrl.replace(/^\/+/, '').split('/').map(encodeURIComponent).join('/');
