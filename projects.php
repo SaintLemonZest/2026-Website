@@ -43,6 +43,7 @@ while ($row = $result->fetch_assoc()) {
         'technologies' => $row['technologies'],
         'created_at' => $createdAt,
         'images' => $imageValue !== '' ? $imageValue : null,
+        'image_url' => $imageValue !== '' ? $imageValue : null,
         'form_feedback' => $row['form_feedback'],
     ];
 }
