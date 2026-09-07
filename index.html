@@ -119,11 +119,13 @@
             imageUrl = String(imageUrl || '').trim();
             if (!imageUrl) return '';
             const driveId = imageUrl.match(/[?&]id=([^&]+)/)?.[1];
-            return driveId
-                ? `https://drive.google.com/uc?export=view&id=${encodeURIComponent(driveId)}`
-                : /^https?:\/\//i.test(imageUrl)
-                    ? imageUrl
-                    : `uploads/${encodeURIComponent(imageUrl)}`;
+            if (driveId) return `https://drive.google.com/uc?export=view&id=${encodeURIComponent(driveId)}`;
+            if (/^(data:image\/|blob:|https?:\/\/)/i.test(imageUrl)) return imageUrl;
+
+            const imagePath = imageUrl.replace(/^\/+/, '').split('/').map(encodeURIComponent).join('/');
+            return imagePath.startsWith('uploads/') || imagePath.startsWith('images/')
+                ? imagePath
+                : `images/${imagePath}`;
         }
 
         function renderOutcome(project) {
