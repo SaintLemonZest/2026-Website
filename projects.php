@@ -26,6 +26,7 @@ if (!$result) {
 $projects = [];
 while ($row = $result->fetch_assoc()) {
     $createdAt = $row['project_created'];
+    $imageValue = trim((string)($row['images'] ?? ''));
     $projects[] = [
         'id' => (int)$row['id'],
         'submitted_at' => $row['submitted_at'],
@@ -41,7 +42,7 @@ while ($row = $result->fetch_assoc()) {
         'outcome' => null,
         'technologies' => $row['technologies'],
         'created_at' => $createdAt,
-        'images' => $row['images'],
+        'images' => $imageValue !== '' ? $imageValue : null,
         'form_feedback' => $row['form_feedback'],
     ];
 }
