@@ -118,7 +118,7 @@
 
             imageUrl = String(imageUrl || '').trim();
             if (!imageUrl) return '';
-            const driveId = imageUrl.match(/[?&]id=([^&]+)/)?.[1];
+            const driveId = imageUrl.match(/(?:\/file\/d\/|[?&]id=)([a-zA-Z0-9_-]+)/)?.[1];
             if (driveId) return `https://drive.google.com/uc?export=view&id=${encodeURIComponent(driveId)}`;
             if (/^(data:image\/|blob:|https?:\/\/)/i.test(imageUrl)) return imageUrl;
 
