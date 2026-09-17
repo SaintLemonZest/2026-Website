@@ -115,6 +115,7 @@
             }
 
             return imageValues.map(value => String(value || '').trim()).filter(Boolean).map(imageUrl => {
+                if (/^https?:\/\/drive\.google\.com\/uc\?export=view&id=/i.test(imageUrl)) return imageUrl;
                 const driveId = imageUrl.match(/(?:\/file\/d\/|[?&]id=)([a-zA-Z0-9_-]+)/)?.[1];
                 if (driveId) return `https://drive.google.com/thumbnail?id=${encodeURIComponent(driveId)}&sz=w1200`;
                 return /^(data:image\/|blob:|https?:\/\/)/i.test(imageUrl) ? imageUrl : '';
@@ -127,7 +128,7 @@
 
             return `<p><strong>Outcome:</strong></p>${imageUrls.map(imageUrl => `
                 <img class="outcome-image" src="${escapeHtml(imageUrl)}" alt="Attached image for ${escapeHtml(project.title)}" loading="lazy" onerror="this.hidden=true; this.nextElementSibling.hidden=false">
-                <span class="image-unavailable" hidden>Image unavailable</span>`).join('')}`;
+                <span class="image-unavailable" hidden>Image unavailable. <a href="${escapeHtml(imageUrl)}" target="_blank" rel="noopener">Open image</a></span>`).join('')}`;
         }
 
         async function loadProjects() {
