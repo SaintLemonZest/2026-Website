@@ -101,28 +101,15 @@ CTYPE html>
         }
 
         function getImageUrls(project) {
-            const images = project.image_urls?.length ? project.image_urls : (project.image_url ?? project.images);
-            if (!images) return [];
-
-            let imageValues = images;
-            if (!Array.isArray(images)) {
-                try {
-                    const parsedImages = JSON.parse(images);
-                    imageValues = Array.isArray(parsedImages) ? parsedImages : [images];
-                } catch {
-                    imageValues = String(images).split(/[\n,]+/);
-                }
-            }
-
-            return imageValues.map(value => String(value || '').trim()).filter(Boolean).map(imageUrl => {
+            return (Array.isArray(project.image_urls) ? project.image_urls : [])
+                .map(value => String(value || '').trim())
+                .filter(imageUrl => /^https?:\/\//i.test(imageUrl))
+                .map(imageUrl => {
                 if (/^https?:\/\/drive\.google\.com\/uc\?export=view&id=/i.test(imageUrl)) return imageUrl;
                 const driveId = imageUrl.match(/(?:\/file\/d\/|[?&]id=)([a-zA-Z0-9_-]+)/)?.[1];
                 if (driveId) return `https://drive.google.com/thumbnail?id=${encodeURIComponent(driveId)}&sz=w1200`;
-                if (/^(data:image\/|blob:|https?:\/\/)/i.test(imageUrl)) return imageUrl;
-
-                const localPath = imageUrl.replace(/^\/+/, '').replace(/^images\//i, '');
-                return `images/${encodeURIComponent(localPath).replace(/%2F/gi, '/')}`;
-            }).filter(Boolean);
+                return imageUrl;
+            });
         }
 
         function renderOutcome(project) {
