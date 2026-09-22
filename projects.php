@@ -33,7 +33,7 @@ while ($row = $result->fetch_assoc()) {
         $imageValues = is_array($decodedImages) ? $decodedImages : preg_split('/[\r\n]+/', $imageValue);
         foreach ($imageValues as $image) {
             $image = trim((string)$image);
-            if ($image !== '') {
+            if ($image !== '' && preg_match('/^https?:\/\//i', $image) && filter_var($image, FILTER_VALIDATE_URL)) {
                 $imageUrls[] = $image;
             }
         }
@@ -53,8 +53,8 @@ while ($row = $result->fetch_assoc()) {
         'outcome' => null,
         'technologies' => $row['technologies'],
         'created_at' => $createdAt,
-        'images' => $imageValue !== '' ? $imageValue : null,
-        'image_url' => $imageValue !== '' ? $imageValue : null,
+        'images' => $imageUrls ?: null,
+        'image_url' => $imageUrls[0] ?? null,
         'image_urls' => $imageUrls,
         'form_feedback' => $row['form_feedback'],
     ];
