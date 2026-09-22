@@ -27,6 +27,17 @@ $projects = [];
 while ($row = $result->fetch_assoc()) {
     $createdAt = $row['project_created'];
     $imageValue = trim((string)($row['images'] ?? ''));
+    $imageUrls = [];
+    if ($imageValue !== '') {
+        $decodedImages = json_decode($imageValue, true);
+        $imageValues = is_array($decodedImages) ? $decodedImages : preg_split('/[\r\n]+/', $imageValue);
+        foreach ($imageValues as $image) {
+            $image = trim((string)$image);
+            if ($image !== '') {
+                $imageUrls[] = $image;
+            }
+        }
+    }
     $projects[] = [
         'id' => (int)$row['id'],
         'submitted_at' => $row['submitted_at'],
@@ -44,6 +55,7 @@ while ($row = $result->fetch_assoc()) {
         'created_at' => $createdAt,
         'images' => $imageValue !== '' ? $imageValue : null,
         'image_url' => $imageValue !== '' ? $imageValue : null,
+        'image_urls' => $imageUrls,
         'form_feedback' => $row['form_feedback'],
     ];
 }
