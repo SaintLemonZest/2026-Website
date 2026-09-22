@@ -101,7 +101,7 @@ CTYPE html>
         }
 
         function getImageUrls(project) {
-            const images = project.image_url ?? project.images;
+            const images = project.image_urls?.length ? project.image_urls : (project.image_url ?? project.images);
             if (!images) return [];
 
             let imageValues = images;
