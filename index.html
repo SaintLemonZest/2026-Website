@@ -118,7 +118,10 @@ CTYPE html>
                 if (/^https?:\/\/drive\.google\.com\/uc\?export=view&id=/i.test(imageUrl)) return imageUrl;
                 const driveId = imageUrl.match(/(?:\/file\/d\/|[?&]id=)([a-zA-Z0-9_-]+)/)?.[1];
                 if (driveId) return `https://drive.google.com/thumbnail?id=${encodeURIComponent(driveId)}&sz=w1200`;
-                return /^(data:image\/|blob:|https?:\/\/)/i.test(imageUrl) ? imageUrl : '';
+                if (/^(data:image\/|blob:|https?:\/\/)/i.test(imageUrl)) return imageUrl;
+
+                const localPath = imageUrl.replace(/^\/+/, '').replace(/^images\//i, '');
+                return `images/${encodeURIComponent(localPath).replace(/%2F/gi, '/')}`;
             }).filter(Boolean);
         }
 
