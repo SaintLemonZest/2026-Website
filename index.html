@@ -105,11 +105,11 @@ CTYPE html>
                 .map(value => String(value || '').trim())
                 .filter(imageUrl => /^https?:\/\//i.test(imageUrl))
                 .map(imageUrl => {
-                if (/^https?:\/\/drive\.google\.com\/uc\?export=view&id=/i.test(imageUrl)) return imageUrl;
-                const driveId = imageUrl.match(/(?:\/file\/d\/|[?&]id=)([a-zA-Z0-9_-]+)/)?.[1];
-                if (driveId) return `https://drive.google.com/thumbnail?id=${encodeURIComponent(driveId)}&sz=w1200`;
-                return imageUrl;
-            });
+                    if (/^https?:\/\/drive\.google\.com\/uc\?export=view&id=/i.test(imageUrl)) return imageUrl;
+                    const driveId = imageUrl.match(/(?:\/file\/d\/|[?&]id=)([a-zA-Z0-9_-]+)/)?.[1];
+                    if (driveId) return `https://drive.google.com/thumbnail?id=${encodeURIComponent(driveId)}&sz=w1200`;
+                    return imageUrl;
+                });
         }
 
         function renderOutcome(project) {
