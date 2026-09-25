@@ -14,7 +14,7 @@ if ($mysqli->connect_errno) {
 }
 $mysqli->set_charset('utf8mb4');
 
-$query = "SELECT projects.id, submitted_at, student_name, email, project_title, project_type, project_status, description, technologies, project_created, COALESCE(NULLIF(TRIM(image_uploads.value), ''), projects.images) AS images, form_feedback FROM projects LEFT JOIN `please_provide_up_to_5_images_of_your_project_design_that_cl` AS image_uploads ON image_uploads.id = projects.id ORDER BY projects.id";
+$query = "SELECT projects.id, submitted_at, student_name, email, project_title, project_type, project_status, description, technologies, project_created, COALESCE(NULLIF(TRIM(pi.urls), ''), projects.images) AS images, form_feedback FROM projects LEFT JOIN (SELECT project_id, GROUP_CONCAT(url SEPARATOR '\\n') AS urls FROM project_images GROUP BY project_id) AS pi ON pi.project_id = projects.id ORDER BY projects.id ASC";
 $result = $mysqli->query($query);
 
 if (!$result) {
