@@ -16,3 +16,10 @@ CREATE TABLE IF NOT EXISTS projects (
     form_feedback TEXT,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS project_images (
+    id INT NOT NULL AUTO_INCREMENT,
+    project_id INT DEFAULT NULL,
+    url TEXT DEFAULT NULL,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
