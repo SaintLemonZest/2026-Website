@@ -1,22 +1,29 @@
+<!-- Use the HTML5 document mode and identify English as the page language. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Declare the character encoding and mobile viewport before page content. -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Set the browser-tab title and load the shared site stylesheet. -->
     <title>NCEA Level 3 Project Hub</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- The site header identifies the portal. -->
     <header>
         <h1>DT Hub</h1>
     </header>
 
+    <!-- Main page content is grouped into an introduction, pathways, and data view. -->
     <main>
+        <!-- Welcome copy introduces the site's three Design and Technology pathways. -->
         <section id="establish" class="intro" aria-labelledby="establish-heading">
             <h2 id="establish-heading">Welcome to the DT Hub</h2>
             <p>Your central entry point for projects in CAD modelling, website HTML coding and game development. Choose a pathway below to explore resources, examples and project briefs.</p>
         </section>
 
+        <!-- Each pathway card links directly to its corresponding project area. -->
         <section aria-label="Pathways">
             <div class="cards">
                 <article class="card" id="cad" aria-labelledby="cad-heading">
@@ -40,10 +47,12 @@
             </div>
         </section>
 
+        <!-- The database view provides search, category filters, and a dynamic results area. -->
         <section id="projects-db" aria-labelledby="projects-heading" class="database-view">
             <h2 id="projects-heading">Projects Database</h2>
             <p>Browse the live project data from the student-sourced database. Filter by type or status, and search by title, student, teacher or description.</p>
 
+            <!-- The label, search input, and buttons control the rendered project list. -->
             <div class="project-controls">
                 <label for="search-projects">Search projects</label>
                 <input id="search-projects" type="search" placeholder="Search by title, student, teacher or description">
@@ -56,33 +65,41 @@
                 </div>
             </div>
 
+            <!-- JavaScript replaces this initial loading message with results or an error. -->
             <div id="projects-container" class="projects-table">
                 <p class="loading">Loading project database...</p>
             </div>
         </section>
     </main>
     <script>
+        // Keep the fetched records in memory so searches and filters do not refetch data.
         const allProjects = [];
+        // Cache the page elements updated by the project rendering and search logic.
         const container = document.getElementById('projects-container');
         const searchInput = document.getElementById('search-projects');
 
+        // Convert values to lowercase strings so text comparisons are case-insensitive.
         function normalizeText(value) {
             return String(value || '').toLowerCase();
         }
 
+        // Treat hyphens, underscores, and repeated whitespace as equivalent in type names.
         function normalizeType(value) {
             return normalizeText(value).replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim();
         }
 
+        // Keep a named conversion point for project types; displayValue handles missing data.
         function displayProjectType(value) {
             return displayValue(value);
         }
 
+        // Trim a value for display and provide a consistent placeholder when it is empty.
         function displayValue(value) {
             const text = String(value ?? '').trim();
             return text || 'Not provided';
         }
 
+        // Escape database text before inserting it into HTML to prevent markup injection.
         function escapeHtml(value) {
             return displayValue(value)
                 .replace(/&/g, '&amp;')
@@ -92,6 +109,8 @@
                 .replace(/'/g, '&#039;');
         }
 
+        // Accept image fields as arrays, JSON, or newline/comma-separated text, then retain
+        // supported URLs and convert recognizable Google Drive links to thumbnail URLs.
         function getImageUrls(project) {
             const images = project.images ?? project.image_url;
             if (!images) return [];
@@ -114,6 +133,7 @@
             }).filter(Boolean);
         }
 
+        // Build the outcome detail markup, including a useful fallback for unavailable images.
         function renderOutcome(project) {
             const imageUrls = getImageUrls(project);
             if (imageUrls.length === 0) return '<p><strong>Outcome:</strong> Not provided</p>';
@@ -123,6 +143,7 @@
                 <span class="image-unavailable" hidden>Image unavailable. <a href="${escapeHtml(imageUrl)}" target="_blank" rel="noopener">Open image</a></span>`).join('')}`;
         }
 
+        // Fetch the API response, validate its shape, store records, and show an initial view.
         async function loadProjects() {
             try {
                 const response = await fetch('./projects.php');
@@ -144,6 +165,7 @@
             }
         }
 
+        // Search the user-visible project fields together as one case-insensitive string.
         function matchesSearch(project, query) {
             if (!query) return true;
             const text = [
@@ -159,6 +181,7 @@
             return normalizeText(text).includes(query);
         }
 
+        // Apply the selected type (or status) and search query, then render matching records.
         function renderProjects(filterType, searchQuery = '') {
             const query = normalizeText(searchQuery);
             const filtered = allProjects.filter(project => {
@@ -168,11 +191,13 @@
                 return matchesFilter && matchesSearch(project, query);
             });
 
+            // Show a plain empty-state message instead of an empty table.
             if (filtered.length === 0) {
                 container.innerHTML = '<p class="no-results">No projects match your search or filter. Try another term.</p>';
                 return;
             }
 
+            // Render escaped project values in a table; native details elements reveal long text.
             container.innerHTML = `
                 <div class="table-wrap">
                     <table class="project-table" aria-label="Projects database table">
@@ -212,21 +237,25 @@
             `;
         }
 
+        // Bind filter buttons and search input after the API data has loaded.
         function setupFilterButtons() {
             document.querySelectorAll('.filter-btn').forEach(button => {
                 button.addEventListener('click', () => {
+                    // Keep exactly one filter visually active and rerender with the current query.
                     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
                     button.classList.add('active');
                     renderProjects(button.dataset.type, searchInput.value);
                 });
             });
 
+            // Reuse the active category whenever the search text changes.
             searchInput.addEventListener('input', () => {
                 const activeButton = document.querySelector('.filter-btn.active');
                 renderProjects(activeButton?.dataset.type || 'all', searchInput.value);
             });
         }
 
+        // Start the page's data flow as soon as the script is reached.
         loadProjects();
     </script>
 </body>
