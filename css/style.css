@@ -292,6 +292,8 @@ section {
 /* Slightly compact the expandable project details text. */
 .details-cell details { font-size: 0.95rem; }
 
+.details-cell { min-width: 360px; }
+
 /* Keep each project description beside its outcome image on wider screens. */
 .details-layout {
 	display: grid;
@@ -302,6 +304,7 @@ section {
 
 .project-description {
 	min-width: 0;
+	overflow-wrap: anywhere;
 }
 
 .outcome-panel {
@@ -311,6 +314,7 @@ section {
 
 .materials-tech {
 	margin-top: 1.5em;
+	overflow-wrap: anywhere;
 }
 
 /* Make the disclosure summary look interactive while retaining native behavior. */
@@ -325,15 +329,15 @@ section {
 
 /* Constrain attached images so they remain previews rather than dominating details. */
 .outcome-image {
-	max-width: 480px;
+	max-width: min(100%, 480px);
 	max-height: 360px;
 	margin: 0.5rem 0 0;
 	object-fit: contain;
 	border: 3px solid #000;
 }
 
-/* Allow the text and image to stack naturally on narrow screens. */
-@media (max-width: 700px) {
+/* Stack details before the table cell gets too narrow for both columns. */
+@media (max-width: 1000px) {
 	.details-layout { grid-template-columns: minmax(0, 1fr); }
 	.outcome-panel { width: 100%; }
 }
