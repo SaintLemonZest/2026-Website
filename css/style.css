@@ -443,12 +443,12 @@ section {
 }
 
 /* ==========================================================================
-   Footer — unified element + class selectors, dark-blue appearance
+   Footer — unified element + class selectors, aqua appearance
    ========================================================================== */
-/* Center footer content on a full-width dark background. */
+/* Center footer content on a full-width aqua background. */
 footer,
 .site-footer {
-	background-color: var(--dark-blue);
+	background-color: var(--aqua);
 	color: var(--white);
 	text-align: center;
 	padding: 1rem;
