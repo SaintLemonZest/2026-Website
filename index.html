@@ -93,7 +93,7 @@
         }
 
         function getImageUrls(project) {
-            const images = project.image_url ?? project.images;
+            const images = project.images ?? project.image_url;
             if (!images) return [];
 
             let imageValues = images;
@@ -135,7 +135,7 @@
                     throw new Error('Unexpected project data format.');
                 }
 
-                allProjects.push(...data.sort((firstProject, secondProject) => Number(firstProject.id) - Number(secondProject.id)));
+                allProjects.push(...data);
                 setupFilterButtons();
                 renderProjects('all');
             } catch (error) {
