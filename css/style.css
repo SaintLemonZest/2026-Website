@@ -8,6 +8,7 @@
    ========================================================================== */
 
 :root {
+	/* Shared palette tokens keep page and component colors consistent. */
 	--maroon: #8B1E4B;
 	--dark-blue: #332D7A;
 	--aqua: #30D9DB;
@@ -17,10 +18,12 @@
 	--muted: #6b7280;
 }
 
-/* Reset */
+/* Apply predictable box sizing and remove browser-default spacing. */
 * { box-sizing: border-box; margin: 0; padding: 0; }
+/* Let full-height page layouts use the viewport height. */
 html, body { height: 100%; }
 
+/* Set the global type, reading rhythm, foreground, and page background. */
 body {
 	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 	line-height: 1.5;
@@ -28,11 +31,13 @@ body {
 	background: var(--white);
 }
 
+/* Keep media within its parent and make images/videos block-level elements. */
 img, video { max-width: 100%; height: auto; display: block; margin: auto; }
 
 /* ==========================================================================
    Layout container (functional wrapper for grid/card content)
    ========================================================================== */
+/* Center reusable content and cap its width on large screens. */
 .container {
 	width: 100%;
 	max-width: 1100px;
@@ -41,6 +46,7 @@ img, video { max-width: 100%; height: auto; display: block; margin: auto; }
 }
 
 /* Slideshow images specifically fill their container width */
+/* Let slideshow and direct container images use the available content width. */
 .slideshow-container img,
 .container > img {
 	width: 100%;
@@ -49,6 +55,7 @@ img, video { max-width: 100%; height: auto; display: block; margin: auto; }
 /* ==========================================================================
    Header — unified banner + optional flex sub-header, maroon appearance
    ========================================================================== */
+/* Style both semantic and class-based headers as the same flexible banner. */
 header,
 .site-header {
 	background-color: var(--maroon);
@@ -62,12 +69,16 @@ header,
 	text-align: center;
 }
 
+/* Indent the main page heading to align it with the brand layout. */
 h1 { padding-left: 3%; }
 
+/* Provide reusable text and spacing styles for brand labels. */
 .brand { font-weight: 700; font-size: 1.25rem; color: var(--white); }
 
+/* Offset optional header content used by older page layouts. */
 .header { padding-left: 10%; }
 
+/* Size and position an optional site logo beside header content. */
 .logo {
 	width: 5%;
 	height: auto;
@@ -76,11 +87,13 @@ h1 { padding-left: 3%; }
 	margin-bottom: 2%;
 }
 
+/* Contain floated children in legacy layouts. */
 .clearfix { overflow: auto; }
 
 /* ==========================================================================
    Navigation — unified element + class selectors, aqua/orange appearance
    ========================================================================== */
+/* Lay out navigation links in a wrapping aqua bar with an orange accent. */
 nav,
 .nav {
 	display: flex;
@@ -92,6 +105,7 @@ nav,
 	padding: 0.5rem;
 }
 
+/* Make navigation links readable and easy to target. */
 nav a,
 .nav a {
 	color: var(--dark-blue);
@@ -101,6 +115,7 @@ nav a,
 	border-radius: 6px;
 }
 
+/* Provide a visible hover state without changing the navigation layout. */
 nav a:hover,
 .nav a:hover {
 	color: var(--orange);
@@ -110,11 +125,13 @@ nav a:hover,
 /* ==========================================================================
    Main content / grid / cards (functional, recolored)
    ========================================================================== */
+/* Give the main page area consistent breathing room. */
 main {
 	padding: 2rem;
 	background-color: var(--white);
 }
 
+/* Visually group each content section using the shared accent colors. */
 section {
 	background-color: var(--aqua);
 	margin-bottom: 1rem;
@@ -122,6 +139,7 @@ section {
 	border-left: 6px solid var(--orange);
 }
 
+/* Arrange primary content and a fixed-width sidebar when space allows. */
 .grid {
 	display: grid;
 	grid-template-columns: 1fr 320px;
@@ -130,6 +148,7 @@ section {
 	margin-top: 1rem;
 }
 
+/* Give each reusable card a white surface and subtle separation. */
 .card {
 	background: var(--white);
 	border-radius: 8px;
@@ -142,6 +161,7 @@ section {
    ========================================================================== */
 
 /* Primary functional button (was blue in style1, now maroon) */
+/* Present reusable action links with a high-contrast maroon button style. */
 .btn {
 	display: inline-block;
 	background: var(--maroon);
@@ -151,10 +171,12 @@ section {
 	text-decoration: none;
 }
 
+/* Darken action buttons on hover to provide interaction feedback. */
 .btn:hover { background: var(--dark-blue); }
 
 /* Scoped version of style2's old global a:link button —
    apply this class to specific links instead of styling every <a> */
+/* Scope the legacy link-button appearance to links that explicitly opt in. */
 .link-btn {
 	background-color: var(--maroon);
 	color: var(--white);
@@ -164,11 +186,13 @@ section {
 	display: inline-block;
 }
 
+/* Match the hover feedback used by the primary button. */
 .link-btn:hover { background-color: var(--dark-blue); }
 
 /* ==========================================================================
    Project controls / filters / table (functional, recolored)
    ========================================================================== */
+/* Let the project search and filters wrap naturally on narrower screens. */
 .project-controls {
 	display: flex;
 	flex-wrap: wrap;
@@ -177,11 +201,13 @@ section {
 	margin-bottom: 1rem;
 }
 
+/* Emphasize the search label and use the secondary brand color. */
 .project-controls label {
 	font-weight: 700;
 	color: var(--dark-blue);
 }
 
+/* Keep the search field flexible while preserving a usable minimum width. */
 .project-controls input {
 	flex: 1;
 	min-width: 240px;
@@ -191,12 +217,14 @@ section {
 	background: var(--white);
 }
 
+/* Keep filter buttons together while allowing them to wrap when needed. */
 .project-filters {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0.5rem;
 }
 
+/* Style category filters as compact, clickable pill controls. */
 .filter-btn {
 	border: 1px solid var(--maroon);
 	background: var(--white);
@@ -207,12 +235,14 @@ section {
 	transition: background 0.2s ease, color 0.2s ease;
 }
 
+/* Make hovered and selected filters visually distinct. */
 .filter-btn:hover,
 .filter-btn.active {
 	background: var(--maroon);
 	color: var(--white);
 }
 
+/* Allow wide tables to scroll horizontally without breaking the page layout. */
 .table-wrap {
 	overflow-x: auto;
 	background: var(--white);
@@ -220,12 +250,14 @@ section {
 	box-shadow: 0 1px 3px rgba(16, 24, 40, 0.08);
 }
 
+/* Preserve readable column widths; the wrapper supplies horizontal scrolling. */
 .project-table {
 	width: 100%;
 	border-collapse: collapse;
 	min-width: 900px;
 }
 
+/* Align table content and separate each record with a subtle rule. */
 .project-table th,
 .project-table td {
 	padding: 0.9rem 1rem;
@@ -234,6 +266,7 @@ section {
 	vertical-align: top;
 }
 
+/* Distinguish column headings and mark the header row with the accent color. */
 .project-table th {
 	background: #f3f4f6;
 	color: var(--dark-blue);
@@ -252,19 +285,24 @@ section {
 	text-transform: capitalize;
 }
 
+/* Use conventional green and amber colors to communicate project status. */
 .status-badge.completed { background: #d1fae5; color: #065f46; }
 .status-badge.pending { background: #fef3c7; color: #92400e; }
 
+/* Slightly compact the expandable project details text. */
 .details-cell details { font-size: 0.95rem; }
 
+/* Make the disclosure summary look interactive while retaining native behavior. */
 .details-cell summary {
 	cursor: pointer;
 	font-weight: 600;
 	list-style: none;
 }
 
+/* Hide the default marker only in WebKit browsers; the summary stays operable. */
 .details-cell summary::-webkit-details-marker { display: none; }
 
+/* Constrain attached images so they remain previews rather than dominating details. */
 .outcome-image {
 	max-width: 240px;
 	max-height: 180px;
@@ -272,6 +310,7 @@ section {
 	object-fit: contain;
 }
 
+/* Give loading, empty, and error messages a shared readable panel treatment. */
 .loading,
 .no-results,
 .error {
@@ -281,20 +320,24 @@ section {
 	border: 1px solid #d1d5db;
 }
 
+/* Use red for failures and muted text for an empty search result. */
 .error { color: #b91c1c; border-color: #fca5a5; }
 .no-results { color: var(--muted); }
 
 /* ==========================================================================
    Slideshow (appearance feature, unchanged from style2)
    ========================================================================== */
+/* Establish a positioning context for slideshow controls and captions. */
 .slideshow-container {
 	max-width: 1000px;
 	position: relative;
 	margin: auto;
 }
 
+/* Hide inactive slides until slideshow logic selects them. */
 .mySlides { display: none; }
 
+/* Position previous/next controls over the slideshow image. */
 .prev, .next {
 	cursor: pointer;
 	position: absolute;
@@ -310,10 +353,13 @@ section {
 	user-select: none;
 }
 
+/* Anchor the next control to the right edge and mirror its corner shape. */
 .next { right: 0; border-radius: 3px 0 0 3px; }
 
+/* Add a dark backdrop on hover so slideshow controls remain visible. */
 .prev:hover, .next:hover { background-color: rgba(0, 0, 0, 0.8); }
 
+/* Place slide captions over the lower edge of the image. */
 .text {
 	color: var(--orange);
 	font-size: 15px;
@@ -324,6 +370,7 @@ section {
 	text-align: center;
 }
 
+/* Place slide numbering at the top edge of the image. */
 .numbertext {
 	color: var(--black);
 	font-size: 12px;
@@ -332,6 +379,7 @@ section {
 	top: 0;
 }
 
+/* Style each slideshow navigation dot as a circular interactive marker. */
 .dot {
 	cursor: pointer;
 	height: 15px;
@@ -343,8 +391,10 @@ section {
 	transition: background-color 0.6s ease;
 }
 
+/* Apply the fade animation to slides that opt into the fade class. */
 .fade { animation-name: fade; animation-duration: 1.6s; }
 
+/* Fade slides in by moving from partial to full opacity. */
 @keyframes fade {
 	from { opacity: .4; }
 	to { opacity: 1; }
@@ -353,6 +403,7 @@ section {
 /* ==========================================================================
    Footer — unified element + class selectors, dark-blue appearance
    ========================================================================== */
+/* Center footer content on a full-width dark background. */
 footer,
 .site-footer {
 	background-color: var(--dark-blue);
@@ -370,17 +421,20 @@ footer,
 /* ==========================================================================
    Utility classes
    ========================================================================== */
+/* Reusable text alignment and muted-color helpers. */
 .text-center { text-align: center; }
 .muted { color: var(--muted); }
 
 /* ==========================================================================
    Responsive adjustments
    ========================================================================== */
+/* Collapse the sidebar grid and stack the header at tablet widths. */
 @media (max-width: 900px) {
 	.grid { grid-template-columns: 1fr; }
 	header, .site-header { flex-direction: column; align-items: flex-start; }
 }
 
+/* Reduce spacing and navigation gaps on small mobile screens. */
 @media (max-width: 480px) {
 	.container { padding: 0.5rem; }
 	.brand { font-size: 1rem; }
