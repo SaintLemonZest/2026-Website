@@ -304,10 +304,11 @@ section {
 
 /* Constrain attached images so they remain previews rather than dominating details. */
 .outcome-image {
-	max-width: 240px;
-	max-height: 180px;
+	max-width: 480px;
+	max-height: 360px;
 	margin: 0.5rem 0 0;
 	object-fit: contain;
+	border: 3px solid #000;
 }
 
 /* Give loading, empty, and error messages a shared readable panel treatment. */
