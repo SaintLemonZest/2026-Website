@@ -69,6 +69,9 @@ header,
 	text-align: center;
 }
 
+/* Keep the homepage navigation alongside the title rather than at the far edge. */
+.home-header { justify-content: flex-start; }
+
 /* Indent the main page heading to align it with the brand layout. */
 h1 { padding-left: 3%; }
 
@@ -103,6 +106,13 @@ nav,
 	background-color: var(--aqua);
 	border-left: 6px solid var(--orange);
 	padding: 0.5rem;
+}
+
+/* Keep the pathway links beside the site title while allowing them to wrap. */
+.site-navigation {
+	flex: 0 1 auto;
+	max-width: 52rem;
+	margin-left: 0;
 }
 
 /* Make navigation links readable and easy to target. */

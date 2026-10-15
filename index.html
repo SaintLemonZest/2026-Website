@@ -11,8 +11,13 @@
 </head>
 <body>
     <!-- The site header identifies the portal. -->
-    <header>
+    <header class="home-header">
         <h1>DT Hub</h1>
+        <nav class="site-navigation" aria-label="Main navigation">
+            <a href="projects/cad/index.html">CAD Modelling</a>
+            <a href="projects/web/index.html">Website HTML Coding</a>
+            <a href="projects/games/index.html">Game Development</a>
+        </nav>
     </header>
 
     <!-- Main page content is grouped into an introduction, pathways, and data view. -->
@@ -21,30 +26,6 @@
         <section id="establish" class="intro" aria-labelledby="establish-heading">
             <h2 id="establish-heading">Welcome to the DT Hub</h2>
             <p>Your central entry point for projects in CAD modelling, website HTML coding and game development. Choose a pathway below to explore resources, examples and project briefs.</p>
-        </section>
-
-        <!-- Each pathway card links directly to its corresponding project area. -->
-        <section aria-label="Pathways">
-            <div class="cards">
-                <article class="card" id="cad" aria-labelledby="cad-heading">
-                    <a class="card-link" href="projects/cad/index.html">
-                        <h3 id="cad-heading">CAD Modelling</h3>
-                        <p>Learn CAD tools, build 3D models and prepare files for fabrication and 3D printing.</p>
-                    </a>
-                </article>
-                <article class="card" id="web" aria-labelledby="web-heading">
-                    <a class="card-link" href="projects/web/index.html">
-                        <h3 id="web-heading">Website HTML Coding</h3>
-                        <p>Hands-on HTML, CSS and basic JavaScript projects to build accessible web pages.</p>
-                    </a>
-                </article>
-                <article class="card" id="games" aria-labelledby="games-heading">
-                    <a class="card-link" href="projects/games/index.html">
-                        <h3 id="games-heading">Game Development</h3>
-                        <p>Prototype games, learn game engines and apply programming concepts to interactive projects.</p>
-                    </a>
-                </article>
-            </div>
         </section>
 
         <!-- The database view provides search, category filters, and a dynamic results area. -->
