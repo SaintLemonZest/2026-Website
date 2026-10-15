@@ -292,6 +292,22 @@ section {
 /* Slightly compact the expandable project details text. */
 .details-cell details { font-size: 0.95rem; }
 
+/* Keep each project description beside its outcome image on wider screens. */
+.details-layout {
+	display: flex;
+	align-items: flex-start;
+	gap: 1rem;
+}
+
+.project-description {
+	flex: 1 1 0;
+	min-width: 0;
+}
+
+.outcome-panel {
+	flex: 0 1 486px;
+}
+
 /* Make the disclosure summary look interactive while retaining native behavior. */
 .details-cell summary {
 	cursor: pointer;
@@ -309,6 +325,12 @@ section {
 	margin: 0.5rem 0 0;
 	object-fit: contain;
 	border: 3px solid #000;
+}
+
+/* Allow the text and image to stack naturally on narrow screens. */
+@media (max-width: 700px) {
+	.details-layout { flex-direction: column; }
+	.outcome-panel { width: 100%; }
 }
 
 /* Give loading, empty, and error messages a shared readable panel treatment. */

@@ -136,11 +136,14 @@
         // Build the outcome detail markup, including a useful fallback for unavailable images.
         function renderOutcome(project) {
             const imageUrls = getImageUrls(project);
-            if (imageUrls.length === 0) return '<p><strong>Outcome:</strong> Not provided</p>';
+            if (imageUrls.length === 0) return '<div class="outcome-panel"><p><strong>Outcome:</strong> Not provided</p></div>';
 
-            return `<p><strong>Outcome:</strong></p>${imageUrls.map(imageUrl => `
+            return `<div class="outcome-panel">
+                <p><strong>Outcome:</strong></p>
+                ${imageUrls.map(imageUrl => `
                 <img class="outcome-image" src="${escapeHtml(imageUrl)}" alt="Attached image for ${escapeHtml(project.title)}" loading="lazy" onerror="this.hidden=true; this.nextElementSibling.hidden=false">
-                <span class="image-unavailable" hidden>Image unavailable. <a href="${escapeHtml(imageUrl)}" target="_blank" rel="noopener">Open image</a></span>`).join('')}`;
+                <span class="image-unavailable" hidden>Image unavailable. <a href="${escapeHtml(imageUrl)}" target="_blank" rel="noopener">Open image</a></span>`).join('')}
+            </div>`;
         }
 
         // Fetch the API response, validate its shape, store records, and show an initial view.
@@ -224,9 +227,11 @@
                                     <td class="details-cell">
                                         <details>
                                             <summary>View</summary>
-                                            <p><strong>Description:</strong> ${escapeHtml(project.description)}</p>
+                                            <div class="details-layout">
+                                                <p class="project-description"><strong>Description:</strong> ${escapeHtml(project.description)}</p>
+                                                ${renderOutcome(project)}
+                                            </div>
                                             <p><strong>Materials/Tech:</strong> ${escapeHtml(project.materials_or_tech ?? project.technologies)}</p>
-                                            ${renderOutcome(project)}
                                         </details>
                                     </td>
                                 </tr>
