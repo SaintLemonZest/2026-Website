@@ -294,18 +294,23 @@ section {
 
 /* Keep each project description beside its outcome image on wider screens. */
 .details-layout {
-	display: flex;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 486px);
 	align-items: flex-start;
 	gap: 1rem;
 }
 
 .project-description {
-	flex: 1 1 0;
 	min-width: 0;
 }
 
 .outcome-panel {
-	flex: 0 1 486px;
+	min-width: 0;
+	max-width: 486px;
+}
+
+.materials-tech {
+	margin-top: 1.5em;
 }
 
 /* Make the disclosure summary look interactive while retaining native behavior. */
@@ -329,7 +334,7 @@ section {
 
 /* Allow the text and image to stack naturally on narrow screens. */
 @media (max-width: 700px) {
-	.details-layout { flex-direction: column; }
+	.details-layout { grid-template-columns: minmax(0, 1fr); }
 	.outcome-panel { width: 100%; }
 }
 
