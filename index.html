@@ -230,7 +230,9 @@
         }
 
         function bindDetailsAnimation() {
-            document.querySelectorAll('.project-details').forEach(details => {
+            const allDetails = document.querySelectorAll('.project-details');
+
+            allDetails.forEach(details => {
                 const toggle = details.querySelector('.details-toggle');
                 const content = details.querySelector('.details-content');
                 if (!toggle || !content) return;
@@ -245,7 +247,24 @@
                 };
 
                 toggle.addEventListener('click', () => {
-                    details.classList.toggle('is-open');
+                    const isOpening = !details.classList.contains('is-open');
+
+                    allDetails.forEach(other => {
+                        if (other !== details) {
+                            other.classList.remove('is-open');
+                            const otherToggle = other.querySelector('.details-toggle');
+                            const otherContent = other.querySelector('.details-content');
+                            if (otherToggle && otherContent) {
+                                otherToggle.textContent = 'View';
+                                otherToggle.setAttribute('aria-expanded', 'false');
+                                otherContent.setAttribute('aria-hidden', 'true');
+                                otherContent.style.maxHeight = '0px';
+                                otherContent.style.opacity = '0';
+                            }
+                        }
+                    });
+
+                    details.classList.toggle('is-open', isOpening);
                     updateState();
                 });
 
