@@ -60,6 +60,7 @@ header,
 .site-header {
 	background-color: var(--maroon);
 	color: var(--white);
+	border-radius: 8px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -104,6 +105,7 @@ nav,
 	flex-wrap: wrap;
 	gap: 0.75rem;
 	background-color: var(--aqua);
+	border-radius: 8px;
 	border-left: 6px solid var(--orange);
 	padding: 0.5rem;
 }
@@ -146,6 +148,7 @@ section {
 	background-color: var(--aqua);
 	margin-bottom: 1rem;
 	padding: 1rem;
+	border-radius: 8px;
 	border-left: 6px solid var(--orange);
 }
 
@@ -183,6 +186,7 @@ section {
 	aspect-ratio: 1;
 	object-fit: cover;
 	border: 3px solid #000;
+	border-radius: 8px;
 }
 
 .project-gallery figcaption {
@@ -190,6 +194,7 @@ section {
 	margin-top: 1.5rem;
 	padding: 0.75rem;
 	border: 3px solid #000;
+	border-radius: 8px;
 	background: var(--white);
 	color: var(--black);
 	line-height: 1.8;
@@ -223,6 +228,7 @@ section {
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
+	border-radius: 6px;
 }
 
 /* Match the hover feedback used by the primary button. */
@@ -408,6 +414,7 @@ section {
 	margin: 0.5rem 0 0;
 	object-fit: contain;
 	border: 3px solid #000;
+	border-radius: 8px;
 }
 
 /* Stack details before the table cell gets too narrow for both columns. */
@@ -455,12 +462,12 @@ section {
 	font-weight: bold;
 	font-size: 18px;
 	transition: 0.6s ease;
-	border-radius: 0 3px 3px 0;
+	border-radius: 6px;
 	user-select: none;
 }
 
-/* Anchor the next control to the right edge and mirror its corner shape. */
-.next { right: 0; border-radius: 3px 0 0 3px; }
+/* Anchor the next control to the right edge. */
+.next { right: 0; }
 
 /* Add a dark backdrop on hover so slideshow controls remain visible. */
 .prev:hover, .next:hover { background-color: rgba(0, 0, 0, 0.8); }
@@ -514,6 +521,7 @@ footer,
 .site-footer {
 	background-color: var(--aqua);
 	color: var(--white);
+	border-radius: 8px;
 	text-align: center;
 	padding: 1rem;
 	margin-top: 2rem;
