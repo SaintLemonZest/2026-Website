@@ -25,7 +25,7 @@ html, body { height: 100%; }
 
 /* Set the global type, reading rhythm, foreground, and page background. */
 body {
-	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', 'Roboto', sans-serif;
 	line-height: 1.5;
 	color: var(--black);
 	background: var(--white);
