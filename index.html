@@ -206,14 +206,18 @@
                                     <td>${escapeHtml(project.project_type)}</td>
                                     <td><span class="status-badge ${escapeHtml(normalizeText(project.status))}">${escapeHtml(project.status)}</span></td>
                                     <td class="details-cell">
-                                        <details>
-                                            <summary>View</summary>
-                                            <div class="details-layout">
-                                                <p class="project-description"><strong>Description:</strong> ${escapeHtml(project.description)}</p>
-                                                ${renderOutcome(project)}
+                                        <div class="project-details">
+                                            <button type="button" class="details-toggle" aria-expanded="false">View</button>
+                                            <div class="details-content" aria-hidden="true">
+                                                <div class="details-inner">
+                                                    <div class="details-layout">
+                                                        <p class="project-description"><strong>Description:</strong> ${escapeHtml(project.description)}</p>
+                                                        ${renderOutcome(project)}
+                                                    </div>
+                                                    <p class="materials-tech"><strong>Materials/Tech:</strong> ${escapeHtml(project.materials_or_tech ?? project.technologies)}</p>
+                                                </div>
                                             </div>
-                                            <p class="materials-tech"><strong>Materials/Tech:</strong> ${escapeHtml(project.materials_or_tech ?? project.technologies)}</p>
-                                        </details>
+                                        </div>
                                     </td>
                                 </tr>
                             `).join('')}
@@ -221,6 +225,31 @@
                     </table>
                 </div>
             `;
+
+            bindDetailsAnimation();
+        }
+
+        function bindDetailsAnimation() {
+            document.querySelectorAll('.project-details').forEach(details => {
+                const toggle = details.querySelector('.details-toggle');
+                const content = details.querySelector('.details-content');
+                if (!toggle || !content) return;
+
+                const updateState = () => {
+                    const isOpen = details.classList.contains('is-open');
+                    toggle.setAttribute('aria-expanded', String(isOpen));
+                    content.setAttribute('aria-hidden', String(!isOpen));
+                    content.style.maxHeight = isOpen ? content.scrollHeight + 'px' : '0px';
+                    content.style.opacity = isOpen ? '1' : '0';
+                };
+
+                toggle.addEventListener('click', () => {
+                    details.classList.toggle('is-open');
+                    updateState();
+                });
+
+                updateState();
+            });
         }
 
         // Bind filter buttons and search input after the API data has loaded.

@@ -300,9 +300,32 @@ section {
 .status-badge.pending { background: #fef3c7; color: #92400e; }
 
 /* Slightly compact the expandable project details text. */
-.details-cell details { font-size: 0.95rem; }
+.project-details {
+	font-size: 0.95rem;
+}
 
 .details-cell { min-width: 360px; }
+
+.details-content {
+	overflow: hidden;
+	max-height: 0;
+	opacity: 0;
+	transform: translateY(-8px);
+	transition: max-height 0.4s ease, opacity 0.25s ease, transform 0.25s ease, padding-top 0.2s ease;
+	padding-top: 0;
+}
+
+.project-details.is-open .details-content {
+	max-height: 2000px;
+	opacity: 1;
+	transform: translateY(0);
+	padding-top: 0.25rem;
+}
+
+.details-inner {
+	overflow: hidden;
+	min-height: 0;
+}
 
 /* Keep each project description beside its outcome image on wider screens. */
 .details-layout {
@@ -310,6 +333,7 @@ section {
 	grid-template-columns: minmax(0, 1fr) minmax(0, 486px);
 	align-items: flex-start;
 	gap: 1rem;
+	padding-top: 0.75rem;
 }
 
 .project-description {
@@ -328,10 +352,10 @@ section {
 }
 
 /* Make the disclosure summary look interactive while retaining native behavior. */
-.details-cell summary {
+.details-toggle {
 	cursor: pointer;
 	font-weight: 700;
-	list-style: none;
+	font: inherit;
 	display: inline-block;
 	padding: 0.45rem 0.8rem;
 	border: 2px solid var(--black);
@@ -341,15 +365,12 @@ section {
 	transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.details-cell summary:hover {
+.details-toggle:hover {
 	background-color: var(--black);
 	color: var(--white);
 	transform: translateY(-1px);
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
-
-/* Hide the default marker only in WebKit browsers; the summary stays operable. */
-.details-cell summary::-webkit-details-marker { display: none; }
 
 /* Constrain attached images so they remain previews rather than dominating details. */
 .outcome-image {
