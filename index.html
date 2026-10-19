@@ -237,6 +237,7 @@
 
                 const updateState = () => {
                     const isOpen = details.classList.contains('is-open');
+                    toggle.textContent = isOpen ? 'Hide' : 'View';
                     toggle.setAttribute('aria-expanded', String(isOpen));
                     content.setAttribute('aria-hidden', String(!isOpen));
                     content.style.maxHeight = isOpen ? content.scrollHeight + 'px' : '0px';
