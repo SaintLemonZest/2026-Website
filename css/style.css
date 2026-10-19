@@ -330,8 +330,22 @@ section {
 /* Make the disclosure summary look interactive while retaining native behavior. */
 .details-cell summary {
 	cursor: pointer;
-	font-weight: 600;
+	font-weight: 700;
 	list-style: none;
+	display: inline-block;
+	padding: 0.45rem 0.8rem;
+	border: 2px solid var(--black);
+	border-radius: 999px;
+	background: var(--white);
+	color: var(--black);
+	transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.details-cell summary:hover {
+	background-color: var(--black);
+	color: var(--white);
+	transform: translateY(-1px);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Hide the default marker only in WebKit browsers; the summary stays operable. */
