@@ -166,6 +166,35 @@ section {
 	box-shadow: 0 1px 3px rgba(16, 24, 40, 0.06);
 }
 
+.project-gallery {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 2rem;
+	max-width: 1100px;
+	margin: 1rem auto;
+}
+
+.project-gallery figure {
+	min-width: 0;
+}
+
+.project-gallery img {
+	width: 100%;
+	aspect-ratio: 1;
+	object-fit: cover;
+	border: 3px solid #000;
+}
+
+.project-gallery figcaption {
+	min-height: 9rem;
+	margin-top: 1.5rem;
+	padding: 0.75rem;
+	border: 3px solid #000;
+	background: var(--black);
+	color: var(--white);
+	line-height: 1.8;
+}
+
 /* ==========================================================================
    Buttons / links
    ========================================================================== */
@@ -511,9 +540,14 @@ footer,
 	header, .site-header { flex-direction: column; align-items: flex-start; }
 }
 
+@media (max-width: 700px) {
+	.project-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
 /* Reduce spacing and navigation gaps on small mobile screens. */
 @media (max-width: 480px) {
 	.container { padding: 0.5rem; }
 	.brand { font-size: 1rem; }
 	nav, .nav { gap: 0.5rem; }
+	.project-gallery { grid-template-columns: 1fr; }
 }
