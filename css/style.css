@@ -518,13 +518,13 @@ section {
 }
 
 /* ==========================================================================
-   Footer — unified element + class selectors, aqua appearance
+   Footer — unified element + class selectors, black appearance
    ========================================================================== */
-/* Center footer content on a full-width aqua background. */
+/* Center footer content on a full-width black background. */
 footer,
 .site-footer {
-	background-color: var(--aqua);
-	color: var(--black);
+	background-color: var(--black);
+	color: var(--white);
 	border-radius: 0;
 	text-align: center;
 	padding: 1rem;
