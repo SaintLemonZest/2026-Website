@@ -521,7 +521,7 @@ section {
 footer,
 .site-footer {
 	background-color: var(--aqua);
-	color: var(--white);
+	color: var(--black);
 	border-radius: 8px;
 	text-align: center;
 	padding: 1rem;
