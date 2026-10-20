@@ -2,8 +2,14 @@
   "name": "My MariaDB Codespace",
   "image": "mcr.microsoft.com/devcontainers/base:latest",
   "forwardPorts": [3306, 8000],
+  "portsAttributes": {
+    "8000": {
+      "label": "DT Hub project API",
+      "visibility": "private"
+    }
+  },
   "postCreateCommand": "sudo apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server php php-mysql && curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && echo \"deb https://ngrok-agent.s3.amazonaws.com bookworm main\" | sudo tee /etc/apt/sources.list.d/ngrok.list >/dev/null && sudo apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ngrok && ngrok config add-authtoken '3GpfLEO2XisSA0rvQH9907x3cxI_7QHBcFwjHWViqjGrhiD13' && sudo service mariadb start && sudo mariadb -e \"ALTER USER 'root'@'localhost' IDENTIFIED BY 'password'; FLUSH PRIVILEGES;\" && sudo mariadb -u root -ppassword < /workspaces/2026-Website/database_dump/schema.sql",
-  "postStartCommand": "sudo service mariadb start && (pgrep -x ngrok >/dev/null || nohup ngrok tcp 3306 >/tmp/ngrok.log 2>&1 &)",
+  "postStartCommand": "sudo service mariadb start && (pgrep -x ngrok >/dev/null || nohup ngrok tcp 3306 >/tmp/ngrok.log 2>&1 &) && (pgrep -f '[p]hp -S 0.0.0.0:8000' >/dev/null || (nohup php -S 0.0.0.0:8000 -t /workspaces/2026-Website >/tmp/php-server.log 2>&1 &))",
   "customizations": {
     "codespaces": {
       "repositories": {
