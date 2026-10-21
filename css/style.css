@@ -204,6 +204,23 @@ section {
 	line-height: 1.8;
 }
 
+.guide-list {
+	margin: 0.75rem 0 0;
+	padding-left: 1.5rem;
+}
+
+.guide-list li + li {
+	margin-top: 0.5rem;
+}
+
+.guide-note {
+	margin-top: 0.75rem;
+	padding: 0.75rem;
+	border-left: 4px solid var(--maroon);
+	border-radius: 4px;
+	background: var(--white);
+}
+
 /* ==========================================================================
    Buttons / links
    ========================================================================== */
