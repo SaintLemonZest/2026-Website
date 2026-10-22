@@ -173,6 +173,7 @@ section {
 	box-shadow: 0 1px 3px rgba(16, 24, 40, 0.06);
 }
 
+/* Lay out category-page examples in equal, responsive columns. */
 .project-gallery {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -181,10 +182,12 @@ section {
 	margin: 1rem auto;
 }
 
+/* Let each gallery item shrink without overflowing its grid column. */
 .project-gallery figure {
 	min-width: 0;
 }
 
+/* Crop gallery images consistently while keeping them square. */
 .project-gallery img {
 	width: 100%;
 	aspect-ratio: 1;
@@ -193,6 +196,7 @@ section {
 	border-radius: 8px;
 }
 
+/* Keep each explanation readable and visually grouped with its image. */
 .project-gallery figcaption {
 	min-height: 9rem;
 	margin-top: 1.5rem;
@@ -204,15 +208,18 @@ section {
 	line-height: 1.8;
 }
 
+/* Align ordered and unordered guide lists consistently within their sections. */
 .guide-list {
 	margin: 0.75rem 0 0;
 	padding-left: 1.5rem;
 }
 
+/* Add space between list items without adding space before the first item. */
 .guide-list li + li {
 	margin-top: 0.5rem;
 }
 
+/* Set important guide notes apart from the surrounding instructions. */
 .guide-note {
 	margin-top: 0.75rem;
 	padding: 0.75rem;
@@ -363,6 +370,7 @@ section {
 .details-cell { min-width: 360px; }
 
 .details-content {
+	/* Start collapsed; JavaScript sets the height when a detail is opened. */
 	overflow: hidden;
 	max-height: 0;
 	opacity: 0;
@@ -372,6 +380,7 @@ section {
 }
 
 .project-details.is-open .details-content {
+	/* Reveal the content while preserving the opening transition. */
 	max-height: 2000px;
 	opacity: 1;
 	transform: translateY(0);
